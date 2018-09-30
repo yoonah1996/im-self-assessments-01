@@ -6,11 +6,12 @@
 - 모든 self-assessments 는 완료후 반드시 pull request 를 해야 합니다(아래 가이드라인 참고). 배정된 시간에서 pull request 를 할 시간을 꼭 가지길 바랍니다.
 - 모든 문제를 조금이라도 해결하려고 시도하기 바랍니다. 아무 시도도 안하고 그대로 두는것보다 pseudo-code 를 작성하거나 본인의 접근방법을 코멘트로 적는게 더 좋은 평가를 받을 것입니다.
 - TIP: Chrome Console, [JSFiddle](https://jsfiddle.net/) 을 활용해서 작성한 코드가 제대로 작동하는지 빠르고 쉽게 테스트할 수 있습니다.
+- TEST: `npm test` 를 통해 local computer 에서 test를 돌려볼 수 있습니다. (사전에 `npm install` 필요)
 
 ## Grading Outline
 
-- [ ] filter-family-members
 - [ ] tree-map
+- [ ] js-inheritance-pseudo-classical
 
 ## Using and Referencing Outside resources
 
@@ -30,9 +31,9 @@ Solutions 은 [Pull Request](https://help.github.com/articles/using-pull-request
 
 ---
 
-## Filter Family Members
+## Pseudo-classical inheritance
 
-* [ ] Using recursion, complete the `filterFamilyMembers` function inside `filter-family-members.js`.
+* [ ] Refactor `makePhone` and `makeSmartphone` to use pseudo-classical inheritance
 
 ## Available resources for this prompt:
 * MDN

@@ -34,4 +34,12 @@ var Tree = function(value) {
 };
 
 
+Tree.prototype.addChild = function(child) {
+  // your code here
+};
 
+Tree.prototype.map = function (callback) {
+  // your code here
+};
+
+module.exports = Tree;

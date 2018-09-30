@@ -1,0 +1,16 @@
+{
+  "name": "self-assessments-week-01-im08",
+  "version": "1.0.0",
+  "description": "## Guidelines",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tree-map/ js-inheritance-pseudo-classical/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}
