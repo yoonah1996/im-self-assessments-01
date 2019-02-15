@@ -3,7 +3,7 @@ var Tree = require("./tree-map");
 const verifyTree = function(result, expectation) {
   expect(result).toBeInstanceOf(Tree);
   expect(result.value).toEqual(expectation.value);
-  expect(result).not.toEqual(expectation);
+  expect(result).not.toBe(expectation);
   expect(result.children).toHaveLength(expectation.children.length);
 
   for (var i = 0; i < result.children.length; i++) {
@@ -35,7 +35,7 @@ describe("tree map", function() {
       return value;
     };
     var result = root.map(identity);
-    expect(result).not.toEqual(root);
+    expect(result).not.toBe(root);
   });
 
   it("should return a new Tree instance, not the existing one (depth 1)", function() {
@@ -47,8 +47,8 @@ describe("tree map", function() {
     };
     var result = root.map(identity);
     expect(result).toEqual(root);
-    expect(result.children[0]).toEqual(child1);
-    expect(result.children[1]).toEqual(child2);
+    expect(result.children[0]).not.toBe(child1);
+    expect(result.children[1]).not.toBe(child2);
   });
 
   it("should return an identical tree when the map function is identity (depth 0)", function() {
