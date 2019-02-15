@@ -1,48 +1,66 @@
-#!/usr/bin/env node
+const { exec } = require("child_process");
+const https = require("https");
 
-const { exec } = require('child_process');
-const https = require('https');
-exec('npm test | grep -E \"[0-9]+\\s(passing|failing)\"', (err, stdout1, stderr) => {
+let studentInfo = require("../student.json");
+let { theClass, student, sprint } = studentInfo;
+
+const results = require("./results.json");
+const { numFailedTests, numPassedTests } = results;
+
+exec('echo "$airtable_api_key"', (err, apikey) => {
   if (err) {
-    return;
+    console.log(err);
+    throw new Error("echo command did not work right");
   }
 
-  exec('echo "$aws_lambda_apikey"', (err, apikey) => {
-    exec('echo "\n\n$CIRCLE_PR_USERNAME\n$CIRCLE_REPOSITORY_URL\n"', (err, stdout2) => {
-      console.log(`${stdout1}${stdout2}`);
-      
-      const options = {
-        host: '3921zr9vkg.execute-api.ap-northeast-2.amazonaws.com',
-        path: '/default/getTestCaseResult',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': `${apikey}`.trim(),
-          'Access-Control-Request-Method': 'POST'
-        }
-      };
-      console.log(JSON.stringify(options.headers));
-      
-      const req = https.request(options, (res) => {
-        res.on('data', (chunk) => {
-          console.log('ok');
-          console.log(chunk.toString());
-          // callback(null, result);
-        });
-      });
-      
-      req.on('error', (e) => {
-        console.log('error');
-        // callback(new Error('failure'));
-      });
-      
-      // send the request
-      req.write(JSON.stringify({
-        'log': stdout1 + stdout2
-      }));
-      req.end();
-      
+  if (apikey === "\n") {
+    throw new Error("There is not the airtable_api_key");
+  }
+
+  const options = {
+    hostname: "api.airtable.com",
+    path: "/v0/app8kEq9wXlsuffDy/Self%20Assessment",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: " Bearer " + apikey.trim()
+    }
+  };
+
+  console.log(JSON.stringify(options.headers));
+
+  const req = https.request(options, res => {
+    let data;
+
+    res.on("data", chunk => {
+      data += chunk;
+      // callback(null, result);
+    });
+
+    res.on("end", () => {
+      console.log(data);
+      if (data.includes("error")) {
+        throw new Error("There is an error on response from airtable.");
+      }
     });
   });
-});
 
+  req.on("error", e => {
+    console.log(e);
+    throw new Error("data did not send to airtable correctlu");
+    // callback(new Error('failure'));
+  });
+  // send the request
+  req.write(
+    JSON.stringify({
+      fields: {
+        class: theClass,
+        name: student,
+        sprint: sprint,
+        passed: numPassedTests,
+        failed: numFailedTests
+      }
+    })
+  );
+  req.end();
+});

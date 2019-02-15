@@ -1,16 +1,15 @@
 {
-  "name": "self-assessments-week-01-im08",
+  "name": "self-assessments-week-01",
   "version": "1.0.0",
-  "description": "## Guidelines",
-  "main": "index.js",
+  "description": "codestates self assessments",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tree-map/ js-inheritance-pseudo-classical/"
+    "test": "jest",
+    "test:circleci": "jest --json --outputFile=.circleci/results.json"
   },
-  "keywords": [],
-  "author": "",
+  "author": "codestates",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "eslint": "^5.13.0",
+    "jest": "^24.1.0"
   }
 }

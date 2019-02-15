@@ -31,16 +31,10 @@ Solutions 은 [Pull Request](https://help.github.com/articles/using-pull-request
 
 ---
 
-## Pseudo-classical inheritance
-
-* [ ] Refactor `makePhone` and `makeSmartphone` to use pseudo-classical inheritance
-
-## Available resources for this prompt:
-* MDN
-
 ## Tree Map
 
 - [ ] Implement a `addChild` function and higher order function, `map`, on the given `Tree` class using pseudoclassical instantiation
 
 ## Available resources for this prompt
-* MDN
+
+- MDN

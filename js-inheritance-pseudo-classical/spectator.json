@@ -1,6 +1,0 @@
-{
-  "type": "browser",
-  "babel": true,
-  "src": [ "js-inheritance-pseudo-classical.js" ],
-  "tests": [ "js-inheritance-pseudo-classical.test.js" ]
-}
