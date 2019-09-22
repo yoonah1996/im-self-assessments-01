@@ -5,7 +5,6 @@ const colors = require('colors')
 let studentInfo = require("../student.json");
 let testResult = require("../result.json")
 let { theClass, student, sprint } = studentInfo;
-// let { passed, failed } = testResult
 let { numPassedTests, numFailedTests } = testResult;
 let passed = numPassedTests;
 let failed = numFailedTests;
