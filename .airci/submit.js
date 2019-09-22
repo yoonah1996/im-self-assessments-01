@@ -5,7 +5,10 @@ const colors = require('colors')
 let studentInfo = require("../student.json");
 let testResult = require("../result.json")
 let { theClass, student, sprint } = studentInfo;
-let {passed, failed} = testResult
+// let { passed, failed } = testResult
+let { numPassedTests, numFailedTests } = testResult;
+let passed = numPassedTests;
+let failed = numFailedTests;
 
 console.log(['테스트 결과입니다.', `통과된 테스트: ${passed}`.green, `통과하지 못한 테스트: ${failed}`.red].join('\n'))
 
