@@ -31,14 +31,25 @@
 var Tree = function(value) {
   this.value = value;
   this.children = [];
+  
 };
 
 Tree.prototype.addChild = function(child) {
-  // your code here
+  let node = new Tree(child);
+  this.children.push(node); 
+  return node;
 };
 
 Tree.prototype.map = function(callback) {
-  // your code here
+  let obj = new Tree();
+  // let result = Object.assign(obj ,this);
+  obj.value = callback(this.value);
+  if(this.children.length !== 0){
+    for(let i=0; i < this.children.length; i++){
+      obj.children[i] = this.children[i].map(callback);
+    }
+  }
+  return obj;
 };
 
 module.exports = Tree;
